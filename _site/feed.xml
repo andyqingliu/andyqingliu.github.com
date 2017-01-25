@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>andyqingliu</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 25 Jan 2017 13:10:01 +0800</pubDate>
+    <lastBuildDate>Wed, 25 Jan 2017 13:10:01 +0800</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>csharp string类解读</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#string类型&quot; id=&quot;markdown-toc-string类型&quot;&gt;string类型&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#string对象不可变性&quot; id=&quot;markdown-toc-string对象不可变性&quot;&gt;string对象不可变性&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;string类型&quot;&gt;string类型&lt;/h2&gt;
+
+引用类型,class String继承自System.Object,但是String是一个特殊的引用
+类型，特殊关键在两点:不可变性和常驻性。
+
+&lt;h2 id=&quot;string对象不可变性&quot;&gt;string对象不可变性&lt;/h2&gt;
+
+字符串对象一旦创建，在整个进程的生命周期中是不可改变的，无法对其进行
+加长、缩短、改变等操作，既然它不可变，所以也就不存在线程同步的问题。
+看看下面代码：
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string str1 = &quot;Hello&quot;;
+string str2 = str1;            
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
+
+str1 += &quot; World&quot;;
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //False
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 12 Jan 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/01/12/csharp-string-class/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/01/12/csharp-string-class/</guid>
+        
+        <category>csharp</category>
+        
+        
+        <category>csharp</category>
+        
+      </item>
+    
+      <item>
+        <title>lua 字节码(bytecode)</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#lua字节码&quot; id=&quot;markdown-toc-lua字节码&quot;&gt;lua字节码&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#字节码格式&quot; id=&quot;markdown-toc-字节码格式&quot;&gt;字节码格式&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;lua字节码&quot;&gt;lua字节码&lt;/h2&gt;
+
+lua虚拟机最终执行的是经过lua编译器编译的字节码，这里暂不关系Chunk生成字节码过程，
+只关系字节码本身，字节码的格式到底是什么样？具体的含义是什么？
+
+&lt;h2 id=&quot;字节码格式&quot;&gt;字节码格式&lt;/h2&gt;
+
+lua字节码指令是由4个字节32位组成, 这时32是如何规划的，简单说那些位代表这个指令是
+什么，那些位是操作数据，这里通过一个案例来看看bytecode结构，然后再解释bytecode具
+体的结构。
+
+</description>
+        <pubDate>Wed, 11 Jan 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/01/11/lua-vm-bytecode/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/01/11/lua-vm-bytecode/</guid>
+        
+        <category>lua</category>
+        
+        
+        <category>lua</category>
+        
+      </item>
+    
+      <item>
+        <title>git clone非master分支的代码</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#问题描述&quot; id=&quot;markdown-toc-问题描述&quot;&gt;问题描述&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;问题描述&quot;&gt;问题描述&lt;/h2&gt;
+
+我们每次使用命令
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone git@gitlab.xxx.com:xxxxx.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+默认 clone 的是这个仓库的 master 分支。如果最新的代码不在 master 分支上，该如何拿到呢？如下图所示，最新的代码可能在&lt;code class=&quot;highlighter-rouge&quot;&gt;daily/1.4.1&lt;/code&gt;分支上，我们希望拿到这个分支上的代码。
+
+</description>
+        <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/07/07/git-clone-not-master-branch/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/07/07/git-clone-not-master-branch/</guid>
+        
+        <category>github</category>
+        
+        
+        <category>github</category>
+        
+      </item>
+    
+      <item>
+        <title>jekyll 博客主题的改版和重构</title>
+        <description>
+本文主要说明对这个博客主题的改版和代码重构的过程。这个简洁高雅的博客主题受到了很多朋友的喜欢。在写第一版界面时，我对前端并不是很熟悉，对&lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt;也不熟悉。现在距离当时也一年了，对自己当时写的代码也不太满意了，同时&lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll&lt;/code&gt;如今也已经升级了，目前最新版为3.1.2。因此我在临近毕业尚未入职前做一下博客主题的代码重构和改版吧。
+
+主要想做这些事情有：添加归档，添加标签，添加分类页面，主页显示文章摘要，代码去除 jQuery 和 BootStrap，优化移动端显示，将所有变量写入配置文件&lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;中等。再优化一些细节吧。希望更多人会喜欢。
+
+</description>
+        <pubDate>Sat, 12 Mar 2016 11:40:18 +0800</pubDate>
+        <link>http://localhost:4000/2016/03/12/jekyll-theme-version-2.0/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/03/12/jekyll-theme-version-2.0/</guid>
+        
+        <category>jekyll</category>
+        
+        <category>markdown</category>
+        
+        <category>html</category>
+        
+        <category>css</category>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+      <item>
+        <title>jekyll 搭建静态博客</title>
+        <description>
+一直以来都想搭建一个自己的博客，但是近半年做项目太忙，再加上教研室的网络很坑爹，所以也一直没顾得上。之前用过 WordPress 托管在免费的京东云擎上，但是速度太慢。在知乎上看到一些相关的内容，于是选择了在github上用jekyll搭建博客。
+
+</description>
+        <pubDate>Sun, 16 Aug 2015 06:14:54 +0800</pubDate>
+        <link>http://localhost:4000/2015/08/16/jekyll-create-blog/</link>
+        <guid isPermaLink="true">http://localhost:4000/2015/08/16/jekyll-create-blog/</guid>
+        
+        <category>jekyll</category>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+      <item>
+        <title>git repos fork同步</title>
+        <description>
+fork 了别人的仓库后，原作者又更新了仓库，如何将自己的代码和原仓库保持一致？本文将给你解答。
+
+</description>
+        <pubDate>Sun, 12 Apr 2015 23:14:54 +0800</pubDate>
+        <link>http://localhost:4000/2015/04/12/git-syncing-a-fork/</link>
+        <guid isPermaLink="true">http://localhost:4000/2015/04/12/git-syncing-a-fork/</guid>
+        
+        <category>github</category>
+        
+        
+        <category>github</category>
+        
+      </item>
+    
+  </channel>
+</rss>

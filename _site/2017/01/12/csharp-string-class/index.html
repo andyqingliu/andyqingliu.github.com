@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>csharp string类解读</title>
+    <meta name="description" content="  string类型  string对象不可变性string类型引用类型,class String继承自System.Object,但是String是一个特殊的引用类型，特殊关键在两点:不可变性和常驻性。string对象不可变性字符串对象一旦创建，在整个进程的生命周期中是不可改变的，无法对其进行加长、缩短、改变等...">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/01/12/csharp-string-class/">
+    <link rel="alternate" type="application/rss+xml" title="andyqingliu" href="http://localhost:4000/feed.xml ">
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">andyqingliu</a>
+        <small>Dev Engineer</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/collection/">
+                        
+                            <i class="fa fa-bookmark"></i>Collections
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/demo/">
+                        
+                            <i class="fa fa-play"></i>Demo
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>csharp string类解读</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-01-12
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#csharp" title="Category: csharp" rel="category">csharp</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#csharp" title="Tag: csharp" rel="tag">csharp</a-->
+        <a href="/tag/#csharp" title="Tag: csharp" rel="tag">csharp</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#string类型" id="markdown-toc-string类型">string类型</a></li>
+  <li><a href="#string对象不可变性" id="markdown-toc-string对象不可变性">string对象不可变性</a></li>
+  <li><a href="#string对象的驻留性" id="markdown-toc-string对象的驻留性">string对象的驻留性</a></li>
+  <li><a href="#参考资料" id="markdown-toc-参考资料">参考资料</a></li>
+</ul>
+
+<h2 id="string类型">string类型</h2>
+
+<p>引用类型,class String继承自System.Object,但是String是一个特殊的引用
+类型，特殊关键在两点:不可变性和常驻性。</p>
+
+<h2 id="string对象不可变性">string对象不可变性</h2>
+
+<p>字符串对象一旦创建，在整个进程的生命周期中是不可改变的，无法对其进行
+加长、缩短、改变等操作，既然它不可变，所以也就不存在线程同步的问题。
+看看下面代码：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>string str1 = "Hello";
+string str2 = str1;            
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
+
+str1 += " World";
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //False
+</code></pre>
+</div>
+
+<p>第一次调用object.ReferenceEquals方法比较的str1和str2，它们指向的是同一个
+字符串对象引用，所以结果为true，而str1 += “ World”;的过程是重新创建了一个
+对象，且把新的对象引用赋给str1，此时str1与str2指向的不是同一个对象引用，
+所以在第二次调用object.ReferenceEquals方法时返回的是false。无论是使用+=操
+作符还是其他的对字符串修改的方法，都会引起重新创建字符串对象，并且复制旧的
+字符串到新的内存区，而不是我们常说的“对XX字符串进行修改”，如果非要说“改变”，
+那就是对对象引用的改变。</p>
+
+<h2 id="string对象的驻留性">string对象的驻留性</h2>
+
+<p>根据前面的描述，字符串是不可变的，而在编程中，我们会大量使用字符串，这
+就会导致不停地创建字符串对象，不停地分配内存，并且很有可能不停地执行垃
+圾回收，如此以来会大大损伤性能,所以CLR对字符串进行了特殊的优化机制，下
+面我们来对这些机制及特性进行描述。</p>
+
+<p>字符串驻留是CLR提供的一种提高性能的对待字符串的机制，它保证在一个进程内
+的某个字符串在内存中只分配一次。看以下代码：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>string str1 = "abc";
+string str2 = "abc";
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
+</code></pre>
+</div>
+
+<p>这里声明了两个对象str1和str2，调用object.ReferenceEquals方法返回的是True，
+为什么它们指向的是同一个引用呢？这就说明了CLR的字符串驻留，相同的字符串在
+托管内存中只分配一次，再次声明相同的字符串对象时，会将后来一次的声明指向第
+一次声明所引用的对象。那么CLR如何保证做到的呢？原来，在CLR初始化时创建一个
+内部的哈希表，我们知道哈希表在处理表内数据时是非常快的，这个表相当于一个字
+典表（HashMap&lt;TKey,TValue&gt;），键就是字符串，而值是指向托管堆中该字符串对象
+的引用，当在声明一个字符串时，会调用对象的Intern方法，该方法接收一个string
+对象，它会先在哈希表中检查该字符串是否存在？如果存在，则返回这个字符串对应
+的对象引用；否则，将创建该字符串的副本，并将副本添加到哈希表中，最后返回对
+该副本对象的引用。String类还提供了一个IsInterned方法，该方法会根据字符串在
+哈希表中检查是否已经存在相同的串，如果存在，则返回该字符串对象的引用，否则
+，返回null，但它是它不会向哈希表中添加字符串。我们对上面的代码进行改造：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>string str1 = "abc";
+string str2 = "abc";
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
+str1 += str2;
+Console.WriteLine(str1);
+</code></pre>
+</div>
+
+<p>字符串”abc”是有驻留的,+=操作是要重新创建对象的，但CLR对临时计算的新对象”abcabc”
+没有进行驻留。这里可以看出，并不是所有的字符串都会进行驻留，我们将代码改成这样：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>string str1 = "abc";
+string str2 = "abc";
+Console.WriteLine(object.ReferenceEquals(str1, str2)); //True
+str1 += str2;
+Console.WriteLine(str1);
+string str3 = "abcabc";
+Console.WriteLine(object.ReferenceEquals(str1, str3)); //False
+str1 = string.Intern(str1);
+Console.WriteLine(object.ReferenceEquals(str1, str3)); //True
+</code></pre>
+</div>
+
+<p>在没有使用string.Intern方法是，字符串对象是没有驻留的，使用这个方法后，”abcabc”
+是进行驻留，值得注意是：尽管String.Intern(string)方法的字符串参数（上面代码中的
+str1）被垃圾回收器回收，但是CLR已将这个str1的副本添加到哈希表中，垃圾回收器是无
+法对哈希表引用的字符串进行回收。</p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="http://www.cnblogs.com/solan/archive/2012/08/03/CSharp07.html?utm_source=tuicool&amp;utm_medium=referral">CSDN字符串只是梳理</a></p>
+
+<p><a href="https://msdn.microsoft.com/en-us/library/ms228362.aspx">MSDN字符串特效介绍</a></p>
+
+<p><a href="https://referencesource.microsoft.com/#mscorlib/system/string.cs,8281103e6f23cb5c">String字符串源码实现</a></p>
+
+<p><a href="https://referencesource.microsoft.com/#mscorlib/system/object.cs,d9262ceecc1719ab">Object对象源码实现</a></p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2017/01/11/lua-vm-bytecode/">lua 字节码(bytecode)</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="http://localhost:4000/2017/01/12/csharp-string-class/" data-title="csharp string类解读" data-url="http://localhost:4000/2017/01/12/csharp-string-class/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {
+        short_name: "abaoblog"
+    };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             本站记录我前端之旅的沿途风景 from andyqingliu！ 
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/andyqingliu" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:andyqingliu@163.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>  
+            <a href="http://weibo.com/andyqingliu" title="Weibo"><i class="fa fa-weibo" aria-hidden="true"></i></a>  
+            <a href="https://www.zhihu.com/people/andyqingliu" title="Zhihu"><i class="iconfont icon-daoruzhihu"></i></a>     
+            <a href="https://www.linkedin.com/in/andyqingliu" title="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>  
+        </p>
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" class="scroll">
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/scroll.min.js " charset="utf-8"></script>
+  </body>
+
+</html>
