@@ -8,7 +8,7 @@
 
 随着 jekyll 的版本升级，同时我也想重构我的旧版博客主题，因此在这个月对博客进行了重构加改版，这个仓库存放我的新博客，并且我也会一直使用这个主题。目前基本改版完成，后续可能还会有些细节上的修补。
 
-**博客访问地址：[http://abaojin.github.io/](http://abaojin.github.io/)**。若您喜欢这个新的博客主题，请给我个star以示鼓励吧，欢迎大家使用。
+**博客访问地址：[http://andyqingliu.github.com/](http://andyqingliu.github.com/)**。若您喜欢这个新的博客主题，请给我个star以示鼓励吧，欢迎大家使用。
 
 ## 目录
 
@@ -161,7 +161,7 @@ gem install jekyll
 title: HyG
 brief-intro: Front-end Dev Engineer
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://abaojin.github.io" # the base hostname & protocol for your site
+url: "http://andyqingliu.github.com" # the base hostname & protocol for your site
 ```
 
 #### 链接信息
