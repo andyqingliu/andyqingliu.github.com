@@ -1,3 +1,9 @@
+
+----------
+# *Readme是摘抄别人的内容，尊重版权，从我做起！* #
+
+----------
+
 # 简洁博客主题 🤘🤘🤘
 
 [![GitHub stars](https://img.shields.io/github/stars/abaojin/abaojin.github.io.svg)](https://github.com/abaojin/abaojin.github.io/stargazers)
